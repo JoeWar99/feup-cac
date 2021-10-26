@@ -1,11 +1,2 @@
-account.csv
-card_test.csv
-card_train.csv
-client.csv
-disp.csv
-district.csv
-loan_test.csv
-loan_train.csv
-trans_test.csv
-trans_train.csv
-
+.vscode
+.idea
