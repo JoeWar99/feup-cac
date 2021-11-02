@@ -31,6 +31,7 @@ Data analysis:
             - birth_number format
                 - Men: YYMMDD
                 - Women: YY(MM+50)DD
+        - Use age instead of birth_number as an attribute of model
     - disp:
         - Check meaning of "DISPONENT"
             - "only owner can issue permanent orders and ask for a loan"
