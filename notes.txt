@@ -45,4 +45,6 @@ Data analysis:
             - Check if no. of municipalities relates to anything
                 
 
-        
+Assumptions:
+    - household payments are monthly
+    - higher trans_id when comparing transactions with same date means latest transaction
