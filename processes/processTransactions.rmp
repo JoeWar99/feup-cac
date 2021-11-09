@@ -101,39 +101,6 @@
         <parameter key="filters_logic_and" value="true"/>
         <parameter key="filters_check_metadata" value="true"/>
       </operator>
-      <operator activated="true" class="aggregate" compatibility="9.10.001" expanded="true" height="82" name="Max Date" width="90" x="447" y="391">
-        <parameter key="use_default_aggregation" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="date"/>
-        <parameter key="attributes" value="account_id|balance"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="true"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <parameter key="default_aggregation_function" value="maximum"/>
-        <list key="aggregation_attributes">
-          <parameter key="date" value="maximum"/>
-        </list>
-        <parameter key="group_by_attributes" value="account_id"/>
-        <parameter key="count_all_combinations" value="false"/>
-        <parameter key="only_distinct" value="false"/>
-        <parameter key="ignore_missings" value="true"/>
-      </operator>
-      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join Max Date" width="90" x="581" y="391">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="inner"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="account_id" value="account_id"/>
-          <parameter key="maximum(date)" value="date"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="false"/>
-      </operator>
       <operator activated="true" class="aggregate" compatibility="9.10.001" expanded="true" height="82" name="household average" width="90" x="447" y="289">
         <parameter key="use_default_aggregation" value="false"/>
         <parameter key="attribute_filter_type" value="all"/>
@@ -198,63 +165,7 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="aggregate" compatibility="9.10.001" expanded="true" height="82" name="Max Trans Id" width="90" x="715" y="391">
-        <parameter key="use_default_aggregation" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="date"/>
-        <parameter key="attributes" value="account_id|balance"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="true"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <parameter key="default_aggregation_function" value="maximum"/>
-        <list key="aggregation_attributes">
-          <parameter key="trans_id" value="maximum"/>
-        </list>
-        <parameter key="group_by_attributes" value="account_id"/>
-        <parameter key="count_all_combinations" value="false"/>
-        <parameter key="only_distinct" value="false"/>
-        <parameter key="ignore_missings" value="true"/>
-      </operator>
-      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join Max Trans Id" width="90" x="849" y="391">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="inner"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="account_id" value="account_id"/>
-          <parameter key="maximum(trans_id)" value="trans_id"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="false"/>
-      </operator>
-      <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Balance" width="90" x="983" y="391">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="account_id|balance"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join Last Balance" width="90" x="1117" y="187">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="outer"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="account_id" value="account_id"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="false"/>
-      </operator>
-      <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values" width="90" x="1251" y="34">
+      <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values" width="90" x="983" y="136">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
         <parameter key="attribute_filter_type" value="all"/>
@@ -272,13 +183,12 @@
         <parameter key="default" value="zero"/>
         <list key="columns"/>
       </operator>
-      <operator activated="true" class="blending:rename" compatibility="9.10.001" expanded="true" height="82" name="Trans Data" width="90" x="1385" y="34">
+      <operator activated="true" class="blending:rename" compatibility="9.10.001" expanded="true" height="82" name="Trans Data" width="90" x="1117" y="136">
         <list key="rename attributes">
           <parameter key="sum(amount)" value="credit total"/>
           <parameter key="sum(sum(amount))" value="withdrawal total"/>
           <parameter key="minimum(date)" value="First trans date"/>
           <parameter key="average(amount)" value="household (avg)"/>
-          <parameter key="balance" value="final balance"/>
         </list>
         <parameter key="from_attribute" value=""/>
         <parameter key="to_attribute" value=""/>
@@ -292,20 +202,11 @@
       <connect from_op="Min Date" from_port="example set output" to_op="Join Min Date" to_port="right"/>
       <connect from_op="Min Date" from_port="original" to_op="Filter household" to_port="example set input"/>
       <connect from_op="Filter household" from_port="example set output" to_op="household average" to_port="example set input"/>
-      <connect from_op="Filter household" from_port="original" to_op="Max Date" to_port="example set input"/>
-      <connect from_op="Max Date" from_port="example set output" to_op="Join Max Date" to_port="left"/>
-      <connect from_op="Max Date" from_port="original" to_op="Join Max Date" to_port="right"/>
-      <connect from_op="Join Max Date" from_port="join" to_op="Max Trans Id" to_port="example set input"/>
       <connect from_op="household average" from_port="example set output" to_op="Join household" to_port="right"/>
       <connect from_op="Join" from_port="join" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Join Min Date" to_port="left"/>
       <connect from_op="Join Min Date" from_port="join" to_op="Join household" to_port="left"/>
-      <connect from_op="Join household" from_port="join" to_op="Join Last Balance" to_port="left"/>
-      <connect from_op="Max Trans Id" from_port="example set output" to_op="Join Max Trans Id" to_port="left"/>
-      <connect from_op="Max Trans Id" from_port="original" to_op="Join Max Trans Id" to_port="right"/>
-      <connect from_op="Join Max Trans Id" from_port="join" to_op="Select Balance" to_port="example set input"/>
-      <connect from_op="Select Balance" from_port="example set output" to_op="Join Last Balance" to_port="right"/>
-      <connect from_op="Join Last Balance" from_port="join" to_op="Replace Missing Values" to_port="example set input"/>
+      <connect from_op="Join household" from_port="join" to_op="Replace Missing Values" to_port="example set input"/>
       <connect from_op="Replace Missing Values" from_port="example set output" to_op="Trans Data" to_port="example set input"/>
       <connect from_op="Trans Data" from_port="example set output" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
