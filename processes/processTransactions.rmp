@@ -168,9 +168,9 @@
       <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="103" name="Replace Missing Values" width="90" x="983" y="136">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="household"/>
-        <parameter key="attributes" value=""/>
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="sum(sum(amount))|average(amount)"/>
         <parameter key="use_except_expression" value="false"/>
         <parameter key="value_type" value="attribute_value"/>
         <parameter key="use_value_type_exception" value="false"/>
