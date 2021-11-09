@@ -47,4 +47,14 @@ Data analysis:
 
 Assumptions:
     - household payments are monthly
-    - higher trans_id when comparing transactions with same date means latest transaction
+    - all accounts start with 0 as balance
+
+Data treatment:
+    - District:
+        - replaced "?" values with region average for unemployment rate and no. committed crimes
+    - Trans (both train and test):
+        - Aggregated table by sum of "credit" and "withdrawal" (both types included) operations
+        - Acquired "Min Date" by checking date of first transaction
+        - Final balance will be calculated by subtracting sum of "credit" with sum of "withdrawal"
+        - Aggregated household operations by average
+            - accounts with NaN values of "household" assumed to not have "household" expenses (0)
