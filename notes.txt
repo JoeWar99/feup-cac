@@ -43,11 +43,18 @@ Data analysis:
                 - crimes committed (in %)
         - Verify correlations between columns
             - Check if no. of municipalities relates to anything
-                
+
 
 Assumptions:
     - household payments are monthly
     - all accounts start with 0 as balance
+
+Data analysis:
+    - Loan:
+        - Amount is related to payments and duration
+        - payments and duration are not related
+        - Meaning each loan is different and cannot be described in a single variable? 
+
 
 Data treatment:
     - District:
