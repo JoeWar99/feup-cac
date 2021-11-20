@@ -13,10 +13,10 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve trans_test" width="90" x="112" y="136">
-        <parameter key="repository_entry" value="//CAC/rpdata/trans_test"/>
+        <parameter key="repository_entry" value="../rpdata/trans_test"/>
       </operator>
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute processTransactions (2)" width="90" x="246" y="136">
-        <parameter key="process_location" value="//CAC/processes/processTransactions"/>
+        <parameter key="process_location" value="processTransactions"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>
@@ -25,13 +25,13 @@
         <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
       <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store trans_test" width="90" x="380" y="136">
-        <parameter key="repository_entry" value="//CAC/rpdata/trans_test_processed"/>
+        <parameter key="repository_entry" value="../rpdata/trans_test_processed"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve trans_train" width="90" x="112" y="34">
-        <parameter key="repository_entry" value="//CAC/rpdata/trans_train"/>
+        <parameter key="repository_entry" value="../rpdata/trans_train"/>
       </operator>
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute processTransactions" width="90" x="246" y="34">
-        <parameter key="process_location" value="//CAC/processes/processTransactions"/>
+        <parameter key="process_location" value="processTransactions"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>
@@ -40,7 +40,7 @@
         <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
       <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store" width="90" x="380" y="34">
-        <parameter key="repository_entry" value="//CAC/rpdata/trans_train_processed"/>
+        <parameter key="repository_entry" value="../rpdata/trans_train_processed"/>
       </operator>
       <connect from_op="Retrieve trans_test" from_port="output" to_op="Execute processTransactions (2)" to_port="input 1"/>
       <connect from_op="Execute processTransactions (2)" from_port="result 1" to_op="Store trans_test" to_port="input"/>

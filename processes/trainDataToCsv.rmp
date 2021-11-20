@@ -18,7 +18,7 @@
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve trans_train_processed" width="90" x="246" y="136">
         <parameter key="repository_entry" value="../rpdata/trans_train_processed"/>
       </operator>
-      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute rpPredictions" width="90" x="447" y="34">
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute rpPredictions" width="90" x="514" y="34">
         <parameter key="process_location" value="rpPredictions"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
@@ -27,16 +27,24 @@
         <list key="macros"/>
         <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
-      <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Attributes" width="90" x="648" y="34">
-        <list key="function_descriptions">
-          <parameter key="account duration" value="ceil((date/10000-[First trans date]/10000)*12 + (date/100 - floor(date/10000)*100 - ([First trans date]/100 - floor([First trans date]/10000)*100)))"/>
-        </list>
-        <parameter key="keep_all" value="true"/>
+      <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store train" width="90" x="849" y="34">
+        <parameter key="repository_entry" value="../rpdata/train"/>
+      </operator>
+      <operator activated="true" class="write_csv" compatibility="9.10.001" expanded="true" height="82" name="Write CSV" width="90" x="1050" y="34">
+        <parameter key="csv_file" value="C:/Users/JoseGuerra/Desktop/FEUP/CAC/feup-cac/data/train.csv"/>
+        <parameter key="column_separator" value=";"/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="true"/>
+        <parameter key="date_format" value="yyyy-MM-dd HH:mm:ss"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
       </operator>
       <connect from_op="Retrieve loan_train" from_port="output" to_op="Execute rpPredictions" to_port="input 1"/>
       <connect from_op="Retrieve trans_train_processed" from_port="output" to_op="Execute rpPredictions" to_port="input 2"/>
-      <connect from_op="Execute rpPredictions" from_port="result 1" to_op="Generate Attributes" to_port="example set input"/>
-      <connect from_op="Generate Attributes" from_port="example set output" to_port="result 1"/>
+      <connect from_op="Execute rpPredictions" from_port="result 1" to_op="Store train" to_port="input"/>
+      <connect from_op="Store train" from_port="through" to_op="Write CSV" to_port="input"/>
+      <connect from_op="Write CSV" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
