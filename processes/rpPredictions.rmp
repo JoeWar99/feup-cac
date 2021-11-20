@@ -48,8 +48,14 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve district" width="90" x="380" y="442">
-        <parameter key="repository_entry" value="../rpdata/district"/>
+      <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="68" name="Execute districtTreatment" width="90" x="246" y="442">
+        <parameter key="process_location" value="districtTreatment"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
       <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="JOIN LADpCDt" width="90" x="514" y="340">
         <parameter key="remove_double_attributes" value="true"/>
@@ -91,7 +97,7 @@
       <connect from_op="JOIN LADp" from_port="join" to_op="JOIN LADpC" to_port="left"/>
       <connect from_op="Retrieve client" from_port="output" to_op="JOIN LADpC" to_port="right"/>
       <connect from_op="JOIN LADpC" from_port="join" to_op="JOIN LADpCDt" to_port="left"/>
-      <connect from_op="Retrieve district" from_port="output" to_op="JOIN LADpCDt" to_port="right"/>
+      <connect from_op="Execute districtTreatment" from_port="result 1" to_op="JOIN LADpCDt" to_port="right"/>
       <connect from_op="JOIN LADpCDt" from_port="join" to_op="JOIN LADpCDtT" to_port="left"/>
       <connect from_op="JOIN LADpCDtT" from_port="join" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_port="result 1"/>

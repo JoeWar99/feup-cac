@@ -19,7 +19,7 @@
         <parameter key="repository_entry" value="../rpdata/trans_train_processed"/>
       </operator>
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute rpPredictions" width="90" x="447" y="34">
-        <parameter key="process_location" value="//CAC/processes/rpPredictions"/>
+        <parameter key="process_location" value="rpPredictions"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>

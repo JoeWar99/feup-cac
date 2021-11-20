@@ -51,7 +51,7 @@
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
-            <parameter key="attribute" value="no. of commited crimes '96"/>
+            <parameter key="attribute" value="no. of commited crimes '96 "/>
             <parameter key="attributes" value=""/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>

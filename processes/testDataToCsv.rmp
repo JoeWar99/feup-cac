@@ -19,7 +19,7 @@
         <parameter key="repository_entry" value="../rpdata/loan_test"/>
       </operator>
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute rpPredictions" width="90" x="447" y="34">
-        <parameter key="process_location" value="//CAC/processes/rpPredictions"/>
+        <parameter key="process_location" value="rpPredictions"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>
@@ -28,7 +28,7 @@
         <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
       <operator activated="true" class="write_csv" compatibility="9.10.001" expanded="true" height="82" name="Write CSV" width="90" x="648" y="34">
-        <parameter key="csv_file" value="C:/FEUP/5_ano/CAC/data/test.csv"/>
+        <parameter key="csv_file" value="C:/Users/JoseGuerra/Desktop/FEUP/CAC/feup-cac/data/test.csv"/>
         <parameter key="column_separator" value=";"/>
         <parameter key="write_attribute_names" value="true"/>
         <parameter key="quote_nominal_values" value="true"/>
