@@ -30,21 +30,10 @@
       <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store test" width="90" x="648" y="34">
         <parameter key="repository_entry" value="../rpdata/test"/>
       </operator>
-      <operator activated="true" class="write_csv" compatibility="9.10.001" expanded="true" height="82" name="Write CSV" width="90" x="849" y="34">
-        <parameter key="csv_file" value="C:/Users/JoseGuerra/Desktop/FEUP/CAC/feup-cac/data/test.csv"/>
-        <parameter key="column_separator" value=";"/>
-        <parameter key="write_attribute_names" value="true"/>
-        <parameter key="quote_nominal_values" value="true"/>
-        <parameter key="format_date_attributes" value="true"/>
-        <parameter key="date_format" value="yyyy-MM-dd HH:mm:ss"/>
-        <parameter key="append_to_file" value="false"/>
-        <parameter key="encoding" value="SYSTEM"/>
-      </operator>
       <connect from_op="Retrieve trans_test_processed" from_port="output" to_op="Execute rpPredictions" to_port="input 2"/>
       <connect from_op="Retrieve loan_test" from_port="output" to_op="Execute rpPredictions" to_port="input 1"/>
       <connect from_op="Execute rpPredictions" from_port="result 1" to_op="Store test" to_port="input"/>
-      <connect from_op="Store test" from_port="through" to_op="Write CSV" to_port="input"/>
-      <connect from_op="Write CSV" from_port="through" to_port="result 1"/>
+      <connect from_op="Store test" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>

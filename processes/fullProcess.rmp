@@ -13,7 +13,7 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute storeTransData" width="90" x="179" y="136">
-        <parameter key="process_location" value="//feup-cac/processes/storeTransData"/>
+        <parameter key="process_location" value="storeTransData"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>
@@ -22,7 +22,7 @@
         <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute testDataToCsv" width="90" x="380" y="136">
-        <parameter key="process_location" value="//feup-cac/processes/testDataToCsv"/>
+        <parameter key="process_location" value="testDataToCsv"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>
@@ -31,7 +31,7 @@
         <parameter key="fail_for_unknown_macros" value="true"/>
       </operator>
       <operator activated="true" class="productivity:execute_process" compatibility="9.10.001" expanded="true" height="82" name="Execute trainDataToCsv" width="90" x="581" y="136">
-        <parameter key="process_location" value="//feup-cac/processes/trainDataToCsv"/>
+        <parameter key="process_location" value="trainDataToCsv"/>
         <parameter key="use_input" value="true"/>
         <parameter key="store_output" value="false"/>
         <parameter key="propagate_metadata_recursively" value="true"/>
