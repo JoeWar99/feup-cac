@@ -58,6 +58,11 @@ Data treatment:
         - Final balance will be calculated by subtracting sum of "credit" with sum of "withdrawal"
         - Aggregated household operations by average
             - accounts with NaN values of "household" assumed to not have "household" expenses (0)
+    - Client:
+        - Gender values: 
+            - 1 - Male
+            - 2 - Female
+
 
 Data Analysis Conclusions:
 
