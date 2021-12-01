@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve train" width="90" x="45" y="34">
+        <parameter key="repository_entry" value="../rpdata/train"/>
+      </operator>
+      <operator activated="true" class="split_data" compatibility="9.10.001" expanded="true" height="103" name="Split Data" width="90" x="179" y="34">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.8"/>
+          <parameter key="ratio" value="0.2"/>
+        </enumeration>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="187" name="Multiply (4)" width="90" x="648" y="136"/>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="187" name="Multiply (3)" width="90" x="313" y="238"/>
+      <operator activated="true" class="naive_bayes" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes" width="90" x="514" y="952">
+        <parameter key="laplace_correction" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (9)" width="90" x="849" y="952">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Naive Bayes (unbalanced)" width="90" x="1050" y="952">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest" width="90" x="514" y="1258">
+        <parameter key="number_of_trees" value="1000"/>
+        <parameter key="criterion" value="accuracy"/>
+        <parameter key="maximal_depth" value="40"/>
+        <parameter key="apply_pruning" value="true"/>
+        <parameter key="confidence" value="0.1"/>
+        <parameter key="apply_prepruning" value="false"/>
+        <parameter key="minimal_gain" value="0.01"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+        <parameter key="random_splits" value="false"/>
+        <parameter key="guess_subset_ratio" value="true"/>
+        <parameter key="subset_ratio" value="0.2"/>
+        <parameter key="voting_strategy" value="confidence vote"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="849" y="1258">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Random Forest (unbalanced)" width="90" x="1050" y="1258">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="naive_bayes_kernel" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (Kernel)" width="90" x="514" y="1105">
+        <parameter key="laplace_correction" value="false"/>
+        <parameter key="estimation_mode" value="greedy"/>
+        <parameter key="bandwidth_selection" value="heuristic"/>
+        <parameter key="bandwidth" value="0.1"/>
+        <parameter key="minimum_bandwidth" value="0.1"/>
+        <parameter key="number_of_kernels" value="10"/>
+        <parameter key="use_application_grid" value="false"/>
+        <parameter key="application_grid_size" value="200"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="1105">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Naive Bayes (Kernel) (unbalanced)" width="90" x="1050" y="1105">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="random_tree" compatibility="9.10.001" expanded="true" height="82" name="Random Tree" width="90" x="514" y="646">
+        <parameter key="criterion" value="gain_ratio"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_gain" value="0.1"/>
+        <parameter key="maximal_depth" value="20"/>
+        <parameter key="confidence" value="0.25"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+        <parameter key="no_pre_pruning" value="false"/>
+        <parameter key="no_pruning" value="false"/>
+        <parameter key="guess_subset_ratio" value="true"/>
+        <parameter key="subset_ratio" value="0.2"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (5)" width="90" x="849" y="646">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Random Tree (unbalanced)" width="90" x="1050" y="646">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="support_vector_machine_linear" compatibility="9.10.001" expanded="true" height="82" name="SVM (Linear)" width="90" x="514" y="799">
+        <parameter key="kernel_cache" value="200"/>
+        <parameter key="C" value="0.0"/>
+        <parameter key="convergence_epsilon" value="0.001"/>
+        <parameter key="max_iterations" value="100000"/>
+        <parameter key="scale" value="true"/>
+        <parameter key="L_pos" value="1.0"/>
+        <parameter key="L_neg" value="1.0"/>
+        <parameter key="epsilon" value="0.0"/>
+        <parameter key="epsilon_plus" value="0.0"/>
+        <parameter key="epsilon_minus" value="0.0"/>
+        <parameter key="balance_cost" value="false"/>
+        <parameter key="quadratic_loss_pos" value="false"/>
+        <parameter key="quadratic_loss_neg" value="false"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (6)" width="90" x="849" y="799">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance SVM (linear) (unbalanced)" width="90" x="1050" y="799">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree" width="90" x="514" y="493">
+        <parameter key="criterion" value="gain_ratio"/>
+        <parameter key="maximal_depth" value="10"/>
+        <parameter key="apply_pruning" value="true"/>
+        <parameter key="confidence" value="0.1"/>
+        <parameter key="apply_prepruning" value="true"/>
+        <parameter key="minimal_gain" value="0.01"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model" width="90" x="849" y="493">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Decision Tree (unbalanced)" width="90" x="1050" y="493">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve train (2)" width="90" x="514" y="3094">
+        <parameter key="repository_entry" value="../rpdata/train"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="Multiply (2)" width="90" x="715" y="3094"/>
+      <operator activated="true" class="compare_rocs" compatibility="9.10.001" expanded="true" height="82" name="Compare ROCs (balanced)" width="90" x="916" y="2992">
+        <parameter key="number_of_folds" value="10"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="use_example_weights" value="true"/>
+        <parameter key="roc_bias" value="optimistic"/>
+        <process expanded="true">
+          <operator activated="true" class="maratool:Sample (Balance)" compatibility="1.4.001" expanded="true" height="82" name="Balance Data" width="90" x="179" y="34">
+            <parameter key="number_of_examples_per_class" value="100"/>
+            <parameter key="allow_downsampling" value="false"/>
+          </operator>
+          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="187" name="Multiply (5)" width="90" x="313" y="34"/>
+          <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (Balanced)" width="90" x="514" y="595">
+            <parameter key="number_of_trees" value="200"/>
+            <parameter key="criterion" value="accuracy"/>
+            <parameter key="maximal_depth" value="20"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="false"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <operator activated="true" class="naive_bayes_kernel" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (Kernel) (Balanced)" width="90" x="514" y="493">
+            <parameter key="laplace_correction" value="false"/>
+            <parameter key="estimation_mode" value="greedy"/>
+            <parameter key="bandwidth_selection" value="heuristic"/>
+            <parameter key="bandwidth" value="0.1"/>
+            <parameter key="minimum_bandwidth" value="0.1"/>
+            <parameter key="number_of_kernels" value="10"/>
+            <parameter key="use_application_grid" value="false"/>
+            <parameter key="application_grid_size" value="200"/>
+          </operator>
+          <operator activated="true" class="naive_bayes" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (Balanced)" width="90" x="514" y="391">
+            <parameter key="laplace_correction" value="true"/>
+          </operator>
+          <operator activated="true" class="support_vector_machine_linear" compatibility="9.10.001" expanded="true" height="82" name="SVM (Linear) (Balanced)" width="90" x="514" y="289">
+            <parameter key="kernel_cache" value="200"/>
+            <parameter key="C" value="0.0"/>
+            <parameter key="convergence_epsilon" value="0.001"/>
+            <parameter key="max_iterations" value="100000"/>
+            <parameter key="scale" value="true"/>
+            <parameter key="L_pos" value="1.0"/>
+            <parameter key="L_neg" value="1.0"/>
+            <parameter key="epsilon" value="0.0"/>
+            <parameter key="epsilon_plus" value="0.0"/>
+            <parameter key="epsilon_minus" value="0.0"/>
+            <parameter key="balance_cost" value="false"/>
+            <parameter key="quadratic_loss_pos" value="false"/>
+            <parameter key="quadratic_loss_neg" value="false"/>
+          </operator>
+          <operator activated="true" class="random_tree" compatibility="9.10.001" expanded="true" height="82" name="Random Tree (Balanced)" width="90" x="514" y="187">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+            <parameter key="maximal_depth" value="20"/>
+            <parameter key="confidence" value="0.25"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="no_pre_pruning" value="false"/>
+            <parameter key="no_pruning" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree (Balanced)" width="90" x="514" y="34">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <connect from_port="train 1" to_op="Balance Data" to_port="example set input"/>
+          <connect from_op="Balance Data" from_port="example set output" to_op="Multiply (5)" to_port="input"/>
+          <connect from_op="Multiply (5)" from_port="output 1" to_op="Decision Tree (Balanced)" to_port="training set"/>
+          <connect from_op="Multiply (5)" from_port="output 2" to_op="Random Tree (Balanced)" to_port="training set"/>
+          <connect from_op="Multiply (5)" from_port="output 3" to_op="SVM (Linear) (Balanced)" to_port="training set"/>
+          <connect from_op="Multiply (5)" from_port="output 4" to_op="Naive Bayes (Balanced)" to_port="training set"/>
+          <connect from_op="Multiply (5)" from_port="output 5" to_op="Naive Bayes (Kernel) (Balanced)" to_port="training set"/>
+          <connect from_op="Multiply (5)" from_port="output 6" to_op="Random Forest (Balanced)" to_port="training set"/>
+          <connect from_op="Random Forest (Balanced)" from_port="model" to_port="model 6"/>
+          <connect from_op="Naive Bayes (Kernel) (Balanced)" from_port="model" to_port="model 5"/>
+          <connect from_op="Naive Bayes (Balanced)" from_port="model" to_port="model 4"/>
+          <connect from_op="SVM (Linear) (Balanced)" from_port="model" to_port="model 3"/>
+          <connect from_op="Random Tree (Balanced)" from_port="model" to_port="model 2"/>
+          <connect from_op="Decision Tree (Balanced)" from_port="model" to_port="model 1"/>
+          <portSpacing port="source_train 1" spacing="0"/>
+          <portSpacing port="source_train 2" spacing="0"/>
+          <portSpacing port="sink_model 1" spacing="0"/>
+          <portSpacing port="sink_model 2" spacing="0"/>
+          <portSpacing port="sink_model 3" spacing="0"/>
+          <portSpacing port="sink_model 4" spacing="0"/>
+          <portSpacing port="sink_model 5" spacing="0"/>
+          <portSpacing port="sink_model 6" spacing="0"/>
+          <portSpacing port="sink_model 7" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="compare_rocs" compatibility="9.10.001" expanded="true" height="82" name="Compare ROCs (Unbalanced)" width="90" x="916" y="3094">
+        <parameter key="number_of_folds" value="10"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="use_example_weights" value="true"/>
+        <parameter key="roc_bias" value="optimistic"/>
+        <process expanded="true">
+          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="187" name="Multiply" width="90" x="45" y="34"/>
+          <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (unbalanced)" width="90" x="380" y="595">
+            <parameter key="number_of_trees" value="200"/>
+            <parameter key="criterion" value="accuracy"/>
+            <parameter key="maximal_depth" value="20"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="false"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <operator activated="true" class="naive_bayes_kernel" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (Kernel) (unbalanced)" width="90" x="380" y="493">
+            <parameter key="laplace_correction" value="false"/>
+            <parameter key="estimation_mode" value="greedy"/>
+            <parameter key="bandwidth_selection" value="heuristic"/>
+            <parameter key="bandwidth" value="0.1"/>
+            <parameter key="minimum_bandwidth" value="0.1"/>
+            <parameter key="number_of_kernels" value="10"/>
+            <parameter key="use_application_grid" value="false"/>
+            <parameter key="application_grid_size" value="200"/>
+          </operator>
+          <operator activated="true" class="naive_bayes" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (unbalanced)" width="90" x="380" y="391">
+            <parameter key="laplace_correction" value="true"/>
+          </operator>
+          <operator activated="true" class="support_vector_machine_linear" compatibility="9.10.001" expanded="true" height="82" name="SVM (Linear) (unbalanced)" width="90" x="380" y="289">
+            <parameter key="kernel_cache" value="200"/>
+            <parameter key="C" value="0.0"/>
+            <parameter key="convergence_epsilon" value="0.001"/>
+            <parameter key="max_iterations" value="100000"/>
+            <parameter key="scale" value="true"/>
+            <parameter key="L_pos" value="1.0"/>
+            <parameter key="L_neg" value="1.0"/>
+            <parameter key="epsilon" value="0.0"/>
+            <parameter key="epsilon_plus" value="0.0"/>
+            <parameter key="epsilon_minus" value="0.0"/>
+            <parameter key="balance_cost" value="false"/>
+            <parameter key="quadratic_loss_pos" value="false"/>
+            <parameter key="quadratic_loss_neg" value="false"/>
+          </operator>
+          <operator activated="true" class="random_tree" compatibility="9.10.001" expanded="true" height="82" name="Random Tree (unbalanced)" width="90" x="380" y="187">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+            <parameter key="maximal_depth" value="20"/>
+            <parameter key="confidence" value="0.25"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="no_pre_pruning" value="false"/>
+            <parameter key="no_pruning" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree (unbalanced)" width="90" x="380" y="34">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <connect from_port="train 1" to_op="Multiply" to_port="input"/>
+          <connect from_op="Multiply" from_port="output 1" to_op="Decision Tree (unbalanced)" to_port="training set"/>
+          <connect from_op="Multiply" from_port="output 2" to_op="Random Tree (unbalanced)" to_port="training set"/>
+          <connect from_op="Multiply" from_port="output 3" to_op="SVM (Linear) (unbalanced)" to_port="training set"/>
+          <connect from_op="Multiply" from_port="output 4" to_op="Naive Bayes (unbalanced)" to_port="training set"/>
+          <connect from_op="Multiply" from_port="output 5" to_op="Naive Bayes (Kernel) (unbalanced)" to_port="training set"/>
+          <connect from_op="Multiply" from_port="output 6" to_op="Random Forest (unbalanced)" to_port="training set"/>
+          <connect from_op="Random Forest (unbalanced)" from_port="model" to_port="model 6"/>
+          <connect from_op="Naive Bayes (Kernel) (unbalanced)" from_port="model" to_port="model 5"/>
+          <connect from_op="Naive Bayes (unbalanced)" from_port="model" to_port="model 4"/>
+          <connect from_op="SVM (Linear) (unbalanced)" from_port="model" to_port="model 3"/>
+          <connect from_op="Random Tree (unbalanced)" from_port="model" to_port="model 2"/>
+          <connect from_op="Decision Tree (unbalanced)" from_port="model" to_port="model 1"/>
+          <portSpacing port="source_train 1" spacing="0"/>
+          <portSpacing port="source_train 2" spacing="0"/>
+          <portSpacing port="sink_model 1" spacing="0"/>
+          <portSpacing port="sink_model 2" spacing="0"/>
+          <portSpacing port="sink_model 3" spacing="0"/>
+          <portSpacing port="sink_model 4" spacing="0"/>
+          <portSpacing port="sink_model 5" spacing="0"/>
+          <portSpacing port="sink_model 6" spacing="0"/>
+          <portSpacing port="sink_model 7" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="973" y="1567">Type your comment</description>
+        </process>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve train (3)" width="90" x="45" y="1360">
+        <parameter key="repository_entry" value="../rpdata/train"/>
+      </operator>
+      <operator activated="true" class="split_data" compatibility="9.10.001" expanded="true" height="103" name="Split Data (2)" width="90" x="179" y="1360">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.8"/>
+          <parameter key="ratio" value="0.2"/>
+        </enumeration>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="maratool:Sample (Balance)" compatibility="1.4.001" expanded="true" height="82" name="Balance Data (2)" width="90" x="313" y="1513">
+        <parameter key="number_of_examples_per_class" value="200"/>
+        <parameter key="allow_downsampling" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="187" name="Multiply (7)" width="90" x="648" y="1513"/>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="187" name="Multiply (8)" width="90" x="380" y="1666"/>
+      <operator activated="true" class="naive_bayes" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (2)" width="90" x="514" y="2278">
+        <parameter key="laplace_correction" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (10)" width="90" x="849" y="2278">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Naive Bayes  (balanced)" width="90" x="1050" y="2278">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (2)" width="90" x="514" y="2584">
+        <parameter key="number_of_trees" value="200"/>
+        <parameter key="criterion" value="accuracy"/>
+        <parameter key="maximal_depth" value="20"/>
+        <parameter key="apply_pruning" value="true"/>
+        <parameter key="confidence" value="0.1"/>
+        <parameter key="apply_prepruning" value="false"/>
+        <parameter key="minimal_gain" value="0.01"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+        <parameter key="random_splits" value="false"/>
+        <parameter key="guess_subset_ratio" value="true"/>
+        <parameter key="subset_ratio" value="0.2"/>
+        <parameter key="voting_strategy" value="confidence vote"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (11)" width="90" x="849" y="2584">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Random Forest  (balanced)" width="90" x="1050" y="2584">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="naive_bayes_kernel" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (Kernel) (2)" width="90" x="514" y="2431">
+        <parameter key="laplace_correction" value="false"/>
+        <parameter key="estimation_mode" value="greedy"/>
+        <parameter key="bandwidth_selection" value="heuristic"/>
+        <parameter key="bandwidth" value="0.1"/>
+        <parameter key="minimum_bandwidth" value="0.1"/>
+        <parameter key="number_of_kernels" value="10"/>
+        <parameter key="use_application_grid" value="false"/>
+        <parameter key="application_grid_size" value="200"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (12)" width="90" x="849" y="2431">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Naive Bayes (Kernel)  (balanced)" width="90" x="1050" y="2431">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="random_tree" compatibility="9.10.001" expanded="true" height="82" name="Random Tree (2)" width="90" x="514" y="1972">
+        <parameter key="criterion" value="gain_ratio"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_gain" value="0.1"/>
+        <parameter key="maximal_depth" value="20"/>
+        <parameter key="confidence" value="0.25"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+        <parameter key="no_pre_pruning" value="false"/>
+        <parameter key="no_pruning" value="false"/>
+        <parameter key="guess_subset_ratio" value="true"/>
+        <parameter key="subset_ratio" value="0.2"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (13)" width="90" x="849" y="1972">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Random Tree  (balanced)" width="90" x="1050" y="1972">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="support_vector_machine_linear" compatibility="9.10.001" expanded="true" height="82" name="SVM (Linear) (2)" width="90" x="514" y="2125">
+        <parameter key="kernel_cache" value="200"/>
+        <parameter key="C" value="0.0"/>
+        <parameter key="convergence_epsilon" value="0.001"/>
+        <parameter key="max_iterations" value="100000"/>
+        <parameter key="scale" value="true"/>
+        <parameter key="L_pos" value="1.0"/>
+        <parameter key="L_neg" value="1.0"/>
+        <parameter key="epsilon" value="0.0"/>
+        <parameter key="epsilon_plus" value="0.0"/>
+        <parameter key="epsilon_minus" value="0.0"/>
+        <parameter key="balance_cost" value="false"/>
+        <parameter key="quadratic_loss_pos" value="false"/>
+        <parameter key="quadratic_loss_neg" value="false"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (14)" width="90" x="849" y="2125">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance SVM (linear)  (balanced)" width="90" x="1050" y="2125">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree (2)" width="90" x="514" y="1819">
+        <parameter key="criterion" value="gain_ratio"/>
+        <parameter key="maximal_depth" value="10"/>
+        <parameter key="apply_pruning" value="true"/>
+        <parameter key="confidence" value="0.1"/>
+        <parameter key="apply_prepruning" value="true"/>
+        <parameter key="minimal_gain" value="0.01"/>
+        <parameter key="minimal_leaf_size" value="2"/>
+        <parameter key="minimal_size_for_split" value="4"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="849" y="1819">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance Decision Tree (balanced)" width="90" x="1050" y="1819">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <connect from_op="Retrieve train" from_port="output" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Split Data" from_port="partition 1" to_op="Multiply (3)" to_port="input"/>
+      <connect from_op="Split Data" from_port="partition 2" to_op="Multiply (4)" to_port="input"/>
+      <connect from_op="Multiply (4)" from_port="output 1" to_op="Apply Model" to_port="unlabelled data"/>
+      <connect from_op="Multiply (4)" from_port="output 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (4)" from_port="output 3" to_op="Apply Model (5)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (4)" from_port="output 4" to_op="Apply Model (7)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (4)" from_port="output 5" to_op="Apply Model (8)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (4)" from_port="output 6" to_op="Apply Model (9)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (3)" from_port="output 1" to_op="Decision Tree" to_port="training set"/>
+      <connect from_op="Multiply (3)" from_port="output 2" to_op="SVM (Linear)" to_port="training set"/>
+      <connect from_op="Multiply (3)" from_port="output 3" to_op="Random Tree" to_port="training set"/>
+      <connect from_op="Multiply (3)" from_port="output 4" to_op="Naive Bayes (Kernel)" to_port="training set"/>
+      <connect from_op="Multiply (3)" from_port="output 5" to_op="Random Forest" to_port="training set"/>
+      <connect from_op="Multiply (3)" from_port="output 6" to_op="Naive Bayes" to_port="training set"/>
+      <connect from_op="Naive Bayes" from_port="model" to_op="Apply Model (9)" to_port="model"/>
+      <connect from_op="Apply Model (9)" from_port="labelled data" to_op="Performance Naive Bayes (unbalanced)" to_port="labelled data"/>
+      <connect from_op="Performance Naive Bayes (unbalanced)" from_port="performance" to_port="result 6"/>
+      <connect from_op="Random Forest" from_port="model" to_op="Apply Model (8)" to_port="model"/>
+      <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance Random Forest (unbalanced)" to_port="labelled data"/>
+      <connect from_op="Performance Random Forest (unbalanced)" from_port="performance" to_port="result 5"/>
+      <connect from_op="Naive Bayes (Kernel)" from_port="model" to_op="Apply Model (7)" to_port="model"/>
+      <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance Naive Bayes (Kernel) (unbalanced)" to_port="labelled data"/>
+      <connect from_op="Performance Naive Bayes (Kernel) (unbalanced)" from_port="performance" to_port="result 4"/>
+      <connect from_op="Random Tree" from_port="model" to_op="Apply Model (5)" to_port="model"/>
+      <connect from_op="Apply Model (5)" from_port="labelled data" to_op="Performance Random Tree (unbalanced)" to_port="labelled data"/>
+      <connect from_op="Performance Random Tree (unbalanced)" from_port="performance" to_port="result 2"/>
+      <connect from_op="SVM (Linear)" from_port="model" to_op="Apply Model (6)" to_port="model"/>
+      <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance SVM (linear) (unbalanced)" to_port="labelled data"/>
+      <connect from_op="Performance SVM (linear) (unbalanced)" from_port="performance" to_port="result 3"/>
+      <connect from_op="Decision Tree" from_port="model" to_op="Apply Model" to_port="model"/>
+      <connect from_op="Apply Model" from_port="labelled data" to_op="Performance Decision Tree (unbalanced)" to_port="labelled data"/>
+      <connect from_op="Performance Decision Tree (unbalanced)" from_port="performance" to_port="result 1"/>
+      <connect from_op="Retrieve train (2)" from_port="output" to_op="Multiply (2)" to_port="input"/>
+      <connect from_op="Multiply (2)" from_port="output 1" to_op="Compare ROCs (Unbalanced)" to_port="example set"/>
+      <connect from_op="Multiply (2)" from_port="output 2" to_op="Compare ROCs (balanced)" to_port="example set"/>
+      <connect from_op="Compare ROCs (balanced)" from_port="rocComparison" to_port="result 8"/>
+      <connect from_op="Compare ROCs (Unbalanced)" from_port="exampleSet" to_port="result 9"/>
+      <connect from_op="Compare ROCs (Unbalanced)" from_port="rocComparison" to_port="result 7"/>
+      <connect from_op="Retrieve train (3)" from_port="output" to_op="Split Data (2)" to_port="example set"/>
+      <connect from_op="Split Data (2)" from_port="partition 1" to_op="Balance Data (2)" to_port="example set input"/>
+      <connect from_op="Split Data (2)" from_port="partition 2" to_op="Multiply (7)" to_port="input"/>
+      <connect from_op="Balance Data (2)" from_port="example set output" to_op="Multiply (8)" to_port="input"/>
+      <connect from_op="Multiply (7)" from_port="output 1" to_op="Apply Model (2)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (7)" from_port="output 2" to_op="Apply Model (14)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (7)" from_port="output 3" to_op="Apply Model (13)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (7)" from_port="output 4" to_op="Apply Model (12)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (7)" from_port="output 5" to_op="Apply Model (11)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (7)" from_port="output 6" to_op="Apply Model (10)" to_port="unlabelled data"/>
+      <connect from_op="Multiply (8)" from_port="output 1" to_op="Decision Tree (2)" to_port="training set"/>
+      <connect from_op="Multiply (8)" from_port="output 2" to_op="SVM (Linear) (2)" to_port="training set"/>
+      <connect from_op="Multiply (8)" from_port="output 3" to_op="Random Tree (2)" to_port="training set"/>
+      <connect from_op="Multiply (8)" from_port="output 4" to_op="Naive Bayes (Kernel) (2)" to_port="training set"/>
+      <connect from_op="Multiply (8)" from_port="output 5" to_op="Random Forest (2)" to_port="training set"/>
+      <connect from_op="Multiply (8)" from_port="output 6" to_op="Naive Bayes (2)" to_port="training set"/>
+      <connect from_op="Naive Bayes (2)" from_port="model" to_op="Apply Model (10)" to_port="model"/>
+      <connect from_op="Apply Model (10)" from_port="labelled data" to_op="Performance Naive Bayes  (balanced)" to_port="labelled data"/>
+      <connect from_op="Performance Naive Bayes  (balanced)" from_port="performance" to_port="result 12"/>
+      <connect from_op="Random Forest (2)" from_port="model" to_op="Apply Model (11)" to_port="model"/>
+      <connect from_op="Apply Model (11)" from_port="labelled data" to_op="Performance Random Forest  (balanced)" to_port="labelled data"/>
+      <connect from_op="Performance Random Forest  (balanced)" from_port="performance" to_port="result 15"/>
+      <connect from_op="Naive Bayes (Kernel) (2)" from_port="model" to_op="Apply Model (12)" to_port="model"/>
+      <connect from_op="Apply Model (12)" from_port="labelled data" to_op="Performance Naive Bayes (Kernel)  (balanced)" to_port="labelled data"/>
+      <connect from_op="Performance Naive Bayes (Kernel)  (balanced)" from_port="performance" to_port="result 14"/>
+      <connect from_op="Random Tree (2)" from_port="model" to_op="Apply Model (13)" to_port="model"/>
+      <connect from_op="Apply Model (13)" from_port="labelled data" to_op="Performance Random Tree  (balanced)" to_port="labelled data"/>
+      <connect from_op="Performance Random Tree  (balanced)" from_port="performance" to_port="result 10"/>
+      <connect from_op="SVM (Linear) (2)" from_port="model" to_op="Apply Model (14)" to_port="model"/>
+      <connect from_op="Apply Model (14)" from_port="labelled data" to_op="Performance SVM (linear)  (balanced)" to_port="labelled data"/>
+      <connect from_op="Performance SVM (linear)  (balanced)" from_port="performance" to_port="result 13"/>
+      <connect from_op="Decision Tree (2)" from_port="model" to_op="Apply Model (2)" to_port="model"/>
+      <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance Decision Tree (balanced)" to_port="labelled data"/>
+      <connect from_op="Performance Decision Tree (balanced)" from_port="performance" to_port="result 11"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+      <portSpacing port="sink_result 6" spacing="0"/>
+      <portSpacing port="sink_result 7" spacing="0"/>
+      <portSpacing port="sink_result 8" spacing="0"/>
+      <portSpacing port="sink_result 9" spacing="0"/>
+      <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
+      <portSpacing port="sink_result 12" spacing="0"/>
+      <portSpacing port="sink_result 13" spacing="0"/>
+      <portSpacing port="sink_result 14" spacing="0"/>
+      <portSpacing port="sink_result 15" spacing="0"/>
+      <portSpacing port="sink_result 16" spacing="0"/>
+    </process>
+  </operator>
+</process>
