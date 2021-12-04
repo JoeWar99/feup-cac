@@ -1731,6 +1731,7 @@
           <portSpacing port="source_in 3" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
           <portSpacing port="sink_out 2" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="514" y="89">Type your comment</description>
         </process>
       </operator>
       <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store train" width="90" x="648" y="34">
