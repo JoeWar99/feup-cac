@@ -1685,8 +1685,8 @@
                 <parameter key="except_block_type" value="value_series_end"/>
                 <parameter key="invert_selection" value="false"/>
                 <parameter key="include_special_attributes" value="false"/>
-                <parameter key="min" value="-1.5"/>
-                <parameter key="max" value="0.5"/>
+                <parameter key="min" value="0.5"/>
+                <parameter key="max" value="1.5"/>
               </operator>
               <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Role" width="90" x="916" y="34">
                 <parameter key="attribute_name" value="status"/>
@@ -2241,12 +2241,12 @@
                 <parameter key="except_block_type" value="value_series_end"/>
                 <parameter key="invert_selection" value="false"/>
                 <parameter key="include_special_attributes" value="false"/>
-                <parameter key="min" value="-1.5"/>
-                <parameter key="max" value="0.5"/>
+                <parameter key="min" value="0.5"/>
+                <parameter key="max" value="1.5"/>
               </operator>
               <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Role (2)" width="90" x="916" y="34">
                 <parameter key="attribute_name" value="status"/>
-                <parameter key="target_role" value="label"/>
+                <parameter key="target_role" value="prediction"/>
                 <list key="set_additional_roles">
                   <parameter key="loan_id" value="id"/>
                 </list>
