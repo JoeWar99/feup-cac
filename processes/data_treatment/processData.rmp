@@ -13,7 +13,7 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve trans_test" width="90" x="112" y="340">
-        <parameter key="repository_entry" value="../rpdata/trans_test"/>
+        <parameter key="repository_entry" value="../../rpdata/trans_test"/>
       </operator>
       <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Process Test Transactions" width="90" x="246" y="340">
         <process expanded="true">
@@ -597,7 +597,7 @@
         </process>
       </operator>
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve trans_train" width="90" x="112" y="136">
-        <parameter key="repository_entry" value="../rpdata/trans_train"/>
+        <parameter key="repository_entry" value="../../rpdata/trans_train"/>
       </operator>
       <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="82" name="Process Train Transactions" width="90" x="246" y="136">
         <process expanded="true">
@@ -1181,7 +1181,7 @@
         </process>
       </operator>
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve loan_train" width="90" x="112" y="34">
-        <parameter key="repository_entry" value="../rpdata/loan_train"/>
+        <parameter key="repository_entry" value="../../rpdata/loan_train"/>
       </operator>
       <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="103" name="Process Trans Data" width="90" x="447" y="34">
         <process expanded="true">
@@ -1738,7 +1738,7 @@
         <parameter key="repository_entry" value="../rpdata/train"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve loan_test" width="90" x="112" y="238">
-        <parameter key="repository_entry" value="../rpdata/loan_test"/>
+        <parameter key="repository_entry" value="../../rpdata/loan_test"/>
       </operator>
       <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="103" name="Process Trans Data (2)" width="90" x="447" y="238">
         <process expanded="true">
