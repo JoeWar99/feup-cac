@@ -49,7 +49,7 @@
         <parameter key="max" value="1.0"/>
         <parameter key="allow_negative_values" value="false"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="145" name="Multiply" width="90" x="447" y="85"/>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="447" y="85"/>
       <operator activated="false" class="top_down_clustering" compatibility="9.10.001" expanded="true" height="82" name="Clustering (4)" width="90" x="648" y="544">
         <parameter key="create_cluster_label" value="true"/>
         <parameter key="max_depth" value="5"/>
