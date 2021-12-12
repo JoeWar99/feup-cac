@@ -328,9 +328,12 @@
         <parameter key="deselect_unknown" value="true"/>
         <parameter key="use_absolute_weights" value="true"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="1117" y="187">
+      <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="983" y="289">
         <list key="application_parameters"/>
         <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store (2)" width="90" x="1117" y="238">
+        <parameter key="repository_entry" value="../rpdata/results"/>
       </operator>
       <connect from_op="Retrieve train" from_port="output" to_op="Normalize" to_port="example set input"/>
       <connect from_op="Normalize" from_port="example set output" to_op="Optimize Selection (Evolutionary) (2)" to_port="example set in"/>
@@ -343,8 +346,9 @@
       <connect from_op="Retrieve test" from_port="output" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Select by Weights" to_port="example set input"/>
       <connect from_op="Select by Weights" from_port="example set output" to_op="Apply Model (8)" to_port="unlabelled data"/>
-      <connect from_op="Select by Weights" from_port="weights" to_port="result 3"/>
-      <connect from_op="Apply Model (8)" from_port="labelled data" to_port="result 2"/>
+      <connect from_op="Select by Weights" from_port="weights" to_port="result 2"/>
+      <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Store (2)" to_port="input"/>
+      <connect from_op="Store (2)" from_port="through" to_port="result 3"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
