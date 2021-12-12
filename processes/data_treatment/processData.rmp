@@ -5186,8 +5186,8 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store train (2)" width="90" x="916" y="340">
-        <parameter key="repository_entry" value="../../rpdata/train"/>
+      <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store test" width="90" x="916" y="340">
+        <parameter key="repository_entry" value="../../rpdata/test"/>
       </operator>
       <connect from_op="Retrieve trans_test" from_port="output" to_op="Process Transaction Features (2)" to_port="in 1"/>
       <connect from_op="Retrieve trans_train" from_port="output" to_op="Process Transaction Features" to_port="in 1"/>
@@ -5203,8 +5203,8 @@
       <connect from_op="Process Transaction Features (2)" from_port="out 1" to_op="Process Trans Data (2)" to_port="in 2"/>
       <connect from_op="Process Card Features (2)" from_port="out 1" to_op="Process Trans Data (2)" to_port="in 3"/>
       <connect from_op="Process Trans Data (2)" from_port="out 1" to_op="Feature Generation/Selection" to_port="in 1"/>
-      <connect from_op="Feature Generation/Selection" from_port="out 1" to_op="Store train (2)" to_port="input"/>
-      <connect from_op="Store train (2)" from_port="through" to_port="result 2"/>
+      <connect from_op="Feature Generation/Selection" from_port="out 1" to_op="Store test" to_port="input"/>
+      <connect from_op="Store test" from_port="through" to_port="result 2"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
