@@ -12,15 +12,15 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve train" width="90" x="45" y="85">
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve train" width="90" x="45" y="34">
         <parameter key="repository_entry" value="../../rpdata/train"/>
       </operator>
-      <operator activated="true" class="nominal_to_numerical" compatibility="9.10.001" expanded="true" height="103" name="Nominal to Numerical" width="90" x="45" y="187">
+      <operator activated="true" class="nominal_to_numerical" compatibility="9.10.001" expanded="true" height="103" name="Nominal to Numerical" width="90" x="179" y="187">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value="Gender"/>
-        <parameter key="attributes" value=""/>
+        <parameter key="attributes" value="|Gender"/>
         <parameter key="use_except_expression" value="false"/>
         <parameter key="value_type" value="nominal"/>
         <parameter key="use_value_type_exception" value="false"/>
@@ -36,10 +36,10 @@
         <parameter key="unexpected_value_handling" value="all 0 and warning"/>
         <parameter key="use_underscore_in_name" value="false"/>
       </operator>
-      <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="All Attributes" width="90" x="313" y="34">
+      <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Loans" width="90" x="380" y="187">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="Account duration|age|amount|balance AVG|credit AVG|credit MAX|credit_avg_salary_ratio|duration|final Balance|Gender|household|payments|profit_month|profit_payments_ratio|status|transactions_month|withdraw AVG|withdraw MAX|average salary |crime_increase|no. of cities |no. of enterpreneurs per 1000 inhabitants |no. of inhabitants|ratio of urban inhabitants |unemployment_increase"/>
+        <parameter key="attributes" value="age|amount|balance AVG|duration|payments|Account duration"/>
         <parameter key="use_except_expression" value="false"/>
         <parameter key="value_type" value="attribute_value"/>
         <parameter key="use_value_type_exception" value="false"/>
@@ -50,77 +50,7 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Personal + Loan + Balance" width="90" x="313" y="544">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="Account duration|age|amount|credit_avg_salary_ratio|duration|final Balance|Gender|payments|profit_payments_ratio|status|balance AVG|credit AVG|credit MAX|household|profit_month|transactions_month|withdraw AVG|withdraw MAX"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Personal + Regional + Loan" width="90" x="313" y="442">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="Account duration|age|average salary |crime_increase|Gender|no. of cities |no. of enterpreneurs per 1000 inhabitants |no. of inhabitants|ratio of urban inhabitants |status|unemployment_increase|amount|credit_avg_salary_ratio|duration|final Balance|payments|profit_payments_ratio"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Personal + Loan" width="90" x="313" y="238">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="Account duration|age|amount|credit_avg_salary_ratio|duration|final Balance|Gender|payments|profit_payments_ratio|status"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Personal + Regional" width="90" x="313" y="340">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="Account duration|age|Gender|status|average salary |crime_increase|no. of cities |no. of enterpreneurs per 1000 inhabitants |no. of inhabitants|ratio of urban inhabitants |unemployment_increase"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Personal" width="90" x="313" y="136">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="Account duration|age|Gender|status"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="true" class="normalize" compatibility="9.10.001" expanded="true" height="103" name="Normalize" width="90" x="648" y="85">
+      <operator activated="true" class="normalize" compatibility="9.10.001" expanded="true" height="103" name="Normalize" width="90" x="581" y="187">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
         <parameter key="attribute_filter_type" value="all"/>
@@ -140,11 +70,39 @@
         <parameter key="max" value="1.0"/>
         <parameter key="allow_negative_values" value="false"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="782" y="85"/>
-      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="250" name="K-Means Performance" width="90" x="983" y="493">
+      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Regional" width="90" x="380" y="340">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="amount|average salary |no. of enterpreneurs per 1000 inhabitants |no. of inhabitants|status|ratio of urban inhabitants "/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="false" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Transactions" width="90" x="380" y="34">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="credit AVG|status|withdraw AVG|balance AVG"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="782" y="187"/>
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="187" name="K-Means Performance" width="90" x="983" y="442">
         <process expanded="true">
           <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="K-Means" width="90" x="112" y="136"/>
-          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="166" name="K-Means Optimize Density" width="90" x="380" y="442">
+          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="145" name="K-Means Optimize Density" width="90" x="380" y="442">
             <list key="parameters">
               <parameter key="K-Means Density.k" value="[2.0;5.0;10;linear]"/>
             </list>
@@ -201,10 +159,9 @@
               <connect from_op="K-Means Density" from_port="cluster model" to_op="K-Means Density Model" to_port="input"/>
               <connect from_op="K-Means Density" from_port="clustered set" to_op="Data to Similarity (5)" to_port="example set"/>
               <connect from_op="K-Means Density Model" from_port="output 1" to_op="Density K-Means" to_port="cluster model"/>
-              <connect from_op="K-Means Density Model" from_port="output 2" to_port="output 2"/>
+              <connect from_op="K-Means Density Model" from_port="output 2" to_port="output 1"/>
               <connect from_op="Data to Similarity (5)" from_port="similarity" to_op="Density K-Means" to_port="distance measure"/>
               <connect from_op="Data to Similarity (5)" from_port="example set" to_op="Density K-Means" to_port="example set"/>
-              <connect from_op="Density K-Means" from_port="example set" to_port="output 1"/>
               <connect from_op="Density K-Means" from_port="performance vector" to_port="performance"/>
               <portSpacing port="source_input 1" spacing="0"/>
               <portSpacing port="source_input 2" spacing="0"/>
@@ -212,10 +169,9 @@
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_output 1" spacing="0"/>
               <portSpacing port="sink_output 2" spacing="0"/>
-              <portSpacing port="sink_output 3" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="166" name="K-Means Optimize Avg" width="90" x="380" y="238">
+          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="145" name="K-Means Optimize Avg" width="90" x="380" y="238">
             <list key="parameters">
               <parameter key="K-Means Avg.k" value="[2.0;5.0;10;linear]"/>
             </list>
@@ -260,18 +216,16 @@
               <connect from_op="K-Means Avg" from_port="cluster model" to_op="Distance K-Means Avg" to_port="cluster model"/>
               <connect from_op="K-Means Avg" from_port="clustered set" to_op="Distance K-Means Avg" to_port="example set"/>
               <connect from_op="Distance K-Means Avg" from_port="performance" to_port="performance"/>
-              <connect from_op="Distance K-Means Avg" from_port="example set" to_port="output 1"/>
-              <connect from_op="Distance K-Means Avg" from_port="cluster model" to_port="output 2"/>
+              <connect from_op="Distance K-Means Avg" from_port="cluster model" to_port="output 1"/>
               <portSpacing port="source_input 1" spacing="0"/>
               <portSpacing port="source_input 2" spacing="0"/>
               <portSpacing port="sink_performance" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_output 1" spacing="0"/>
               <portSpacing port="sink_output 2" spacing="0"/>
-              <portSpacing port="sink_output 3" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="166" name="K-Means Optimize DB" width="90" x="380" y="34">
+          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="145" name="K-Means Optimize DB" width="90" x="380" y="34">
             <list key="parameters">
               <parameter key="K-Means DB.k" value="[2.0;5.0;10;linear]"/>
             </list>
@@ -316,30 +270,25 @@
               <connect from_op="K-Means DB" from_port="cluster model" to_op="Distance K-Means DB" to_port="cluster model"/>
               <connect from_op="K-Means DB" from_port="clustered set" to_op="Distance K-Means DB" to_port="example set"/>
               <connect from_op="Distance K-Means DB" from_port="performance" to_port="performance"/>
-              <connect from_op="Distance K-Means DB" from_port="example set" to_port="output 1"/>
-              <connect from_op="Distance K-Means DB" from_port="cluster model" to_port="output 2"/>
+              <connect from_op="Distance K-Means DB" from_port="cluster model" to_port="output 1"/>
               <portSpacing port="source_input 1" spacing="0"/>
               <portSpacing port="source_input 2" spacing="0"/>
               <portSpacing port="sink_performance" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_output 1" spacing="0"/>
               <portSpacing port="sink_output 2" spacing="0"/>
-              <portSpacing port="sink_output 3" spacing="0"/>
             </process>
           </operator>
           <connect from_port="in 1" to_op="K-Means" to_port="input"/>
           <connect from_op="K-Means" from_port="output 1" to_op="K-Means Optimize DB" to_port="input 1"/>
           <connect from_op="K-Means" from_port="output 2" to_op="K-Means Optimize Avg" to_port="input 1"/>
           <connect from_op="K-Means" from_port="output 3" to_op="K-Means Optimize Density" to_port="input 1"/>
-          <connect from_op="K-Means Optimize Density" from_port="performance" to_port="out 7"/>
-          <connect from_op="K-Means Optimize Density" from_port="output 1" to_port="out 8"/>
-          <connect from_op="K-Means Optimize Density" from_port="output 2" to_port="out 9"/>
-          <connect from_op="K-Means Optimize Avg" from_port="performance" to_port="out 4"/>
-          <connect from_op="K-Means Optimize Avg" from_port="output 1" to_port="out 5"/>
-          <connect from_op="K-Means Optimize Avg" from_port="output 2" to_port="out 6"/>
+          <connect from_op="K-Means Optimize Density" from_port="performance" to_port="out 5"/>
+          <connect from_op="K-Means Optimize Density" from_port="output 1" to_port="out 6"/>
+          <connect from_op="K-Means Optimize Avg" from_port="performance" to_port="out 3"/>
+          <connect from_op="K-Means Optimize Avg" from_port="output 1" to_port="out 4"/>
           <connect from_op="K-Means Optimize DB" from_port="performance" to_port="out 1"/>
           <connect from_op="K-Means Optimize DB" from_port="output 1" to_port="out 2"/>
-          <connect from_op="K-Means Optimize DB" from_port="output 2" to_port="out 3"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
@@ -349,15 +298,12 @@
           <portSpacing port="sink_out 5" spacing="0"/>
           <portSpacing port="sink_out 6" spacing="0"/>
           <portSpacing port="sink_out 7" spacing="0"/>
-          <portSpacing port="sink_out 8" spacing="0"/>
-          <portSpacing port="sink_out 9" spacing="0"/>
-          <portSpacing port="sink_out 10" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="250" name="K-Medoids Performance" width="90" x="983" y="238">
+      <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="187" name="K-Medoids Performance" width="90" x="983" y="238">
         <process expanded="true">
           <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="K-Medoids" width="90" x="112" y="136"/>
-          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="166" name="K-Medoids Optimize Density" width="90" x="380" y="442">
+          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="145" name="K-Medoids Optimize Density" width="90" x="380" y="442">
             <list key="parameters">
               <parameter key="K-Medoids Density.k" value="[2.0;5.0;10;linear]"/>
             </list>
@@ -391,7 +337,7 @@
                 <parameter key="kernel_a" value="1.0"/>
                 <parameter key="kernel_b" value="0.0"/>
               </operator>
-              <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="K-Medoids Density Model" width="90" x="313" y="289"/>
+              <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="103" name="K-Medoids Density Model" width="90" x="313" y="238"/>
               <operator activated="true" class="data_to_similarity" compatibility="9.10.001" expanded="true" height="82" name="Data to Similarity" width="90" x="313" y="34">
                 <parameter key="measure_types" value="MixedMeasures"/>
                 <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
@@ -413,10 +359,9 @@
               <connect from_op="K-Medoids Density" from_port="cluster model" to_op="K-Medoids Density Model" to_port="input"/>
               <connect from_op="K-Medoids Density" from_port="clustered set" to_op="Data to Similarity" to_port="example set"/>
               <connect from_op="K-Medoids Density Model" from_port="output 1" to_op="Density K-Medoids" to_port="cluster model"/>
-              <connect from_op="K-Medoids Density Model" from_port="output 2" to_port="output 2"/>
+              <connect from_op="K-Medoids Density Model" from_port="output 2" to_port="output 1"/>
               <connect from_op="Data to Similarity" from_port="similarity" to_op="Density K-Medoids" to_port="distance measure"/>
               <connect from_op="Data to Similarity" from_port="example set" to_op="Density K-Medoids" to_port="example set"/>
-              <connect from_op="Density K-Medoids" from_port="example set" to_port="output 1"/>
               <connect from_op="Density K-Medoids" from_port="performance vector" to_port="performance"/>
               <portSpacing port="source_input 1" spacing="0"/>
               <portSpacing port="source_input 2" spacing="0"/>
@@ -424,10 +369,9 @@
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_output 1" spacing="0"/>
               <portSpacing port="sink_output 2" spacing="0"/>
-              <portSpacing port="sink_output 3" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="166" name="K-Medoids Optimize Avg" width="90" x="380" y="238">
+          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="145" name="K-Medoids Optimize Avg" width="90" x="380" y="238">
             <list key="parameters">
               <parameter key="K-Medoids Avg.k" value="[2.0;5.0;10;linear]"/>
             </list>
@@ -471,18 +415,16 @@
               <connect from_op="K-Medoids Avg" from_port="cluster model" to_op="Distance K-Medoids Avg" to_port="cluster model"/>
               <connect from_op="K-Medoids Avg" from_port="clustered set" to_op="Distance K-Medoids Avg" to_port="example set"/>
               <connect from_op="Distance K-Medoids Avg" from_port="performance" to_port="performance"/>
-              <connect from_op="Distance K-Medoids Avg" from_port="example set" to_port="output 1"/>
-              <connect from_op="Distance K-Medoids Avg" from_port="cluster model" to_port="output 2"/>
+              <connect from_op="Distance K-Medoids Avg" from_port="cluster model" to_port="output 1"/>
               <portSpacing port="source_input 1" spacing="0"/>
               <portSpacing port="source_input 2" spacing="0"/>
               <portSpacing port="sink_performance" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_output 1" spacing="0"/>
               <portSpacing port="sink_output 2" spacing="0"/>
-              <portSpacing port="sink_output 3" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="166" name="K-Medoids Optimize DB" width="90" x="380" y="34">
+          <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="9.10.001" expanded="true" height="145" name="K-Medoids Optimize DB" width="90" x="380" y="34">
             <list key="parameters">
               <parameter key="K-Medoids DB.k" value="[2.0;5.0;10;linear]"/>
             </list>
@@ -526,15 +468,13 @@
               <connect from_op="K-Medoids DB" from_port="cluster model" to_op="Distance K-Medoids DB" to_port="cluster model"/>
               <connect from_op="K-Medoids DB" from_port="clustered set" to_op="Distance K-Medoids DB" to_port="example set"/>
               <connect from_op="Distance K-Medoids DB" from_port="performance" to_port="performance"/>
-              <connect from_op="Distance K-Medoids DB" from_port="example set" to_port="output 1"/>
-              <connect from_op="Distance K-Medoids DB" from_port="cluster model" to_port="output 2"/>
+              <connect from_op="Distance K-Medoids DB" from_port="cluster model" to_port="output 1"/>
               <portSpacing port="source_input 1" spacing="0"/>
               <portSpacing port="source_input 2" spacing="0"/>
               <portSpacing port="sink_performance" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_output 1" spacing="0"/>
               <portSpacing port="sink_output 2" spacing="0"/>
-              <portSpacing port="sink_output 3" spacing="0"/>
             </process>
           </operator>
           <connect from_port="in 1" to_op="K-Medoids" to_port="input"/>
@@ -542,14 +482,11 @@
           <connect from_op="K-Medoids" from_port="output 2" to_op="K-Medoids Optimize Avg" to_port="input 1"/>
           <connect from_op="K-Medoids" from_port="output 3" to_op="K-Medoids Optimize Density" to_port="input 1"/>
           <connect from_op="K-Medoids Optimize Density" from_port="performance" to_port="out 5"/>
-          <connect from_op="K-Medoids Optimize Density" from_port="output 1" to_port="out 8"/>
-          <connect from_op="K-Medoids Optimize Density" from_port="output 2" to_port="out 9"/>
-          <connect from_op="K-Medoids Optimize Avg" from_port="performance" to_port="out 4"/>
-          <connect from_op="K-Medoids Optimize Avg" from_port="output 1" to_port="out 2"/>
-          <connect from_op="K-Medoids Optimize Avg" from_port="output 2" to_port="out 7"/>
-          <connect from_op="K-Medoids Optimize DB" from_port="performance" to_port="out 3"/>
-          <connect from_op="K-Medoids Optimize DB" from_port="output 1" to_port="out 1"/>
-          <connect from_op="K-Medoids Optimize DB" from_port="output 2" to_port="out 6"/>
+          <connect from_op="K-Medoids Optimize Density" from_port="output 1" to_port="out 6"/>
+          <connect from_op="K-Medoids Optimize Avg" from_port="performance" to_port="out 3"/>
+          <connect from_op="K-Medoids Optimize Avg" from_port="output 1" to_port="out 4"/>
+          <connect from_op="K-Medoids Optimize DB" from_port="performance" to_port="out 1"/>
+          <connect from_op="K-Medoids Optimize DB" from_port="output 1" to_port="out 2"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
@@ -559,14 +496,11 @@
           <portSpacing port="sink_out 5" spacing="0"/>
           <portSpacing port="sink_out 6" spacing="0"/>
           <portSpacing port="sink_out 7" spacing="0"/>
-          <portSpacing port="sink_out 8" spacing="0"/>
-          <portSpacing port="sink_out 9" spacing="0"/>
-          <portSpacing port="sink_out 10" spacing="0"/>
         </process>
       </operator>
       <operator activated="true" class="subprocess" compatibility="9.10.001" expanded="true" height="166" name="X-Means Performance" width="90" x="983" y="34">
         <process expanded="true">
-          <operator activated="true" class="x_means" compatibility="9.10.001" expanded="true" height="82" name="X-Means Clustering" width="90" x="179" y="85">
+          <operator activated="true" class="x_means" compatibility="9.10.001" expanded="true" height="82" name="X-Means Clustering" width="90" x="112" y="34">
             <parameter key="add_cluster_attribute" value="true"/>
             <parameter key="add_as_label" value="false"/>
             <parameter key="remove_unlabeled" value="false"/>
@@ -593,21 +527,21 @@
             <parameter key="use_local_random_seed" value="false"/>
             <parameter key="local_random_seed" value="1992"/>
           </operator>
-          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="X-Means" width="90" x="313" y="238"/>
-          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="X-Means Model" width="90" x="380" y="85"/>
-          <operator activated="true" class="cluster_distance_performance" compatibility="9.10.001" expanded="true" height="103" name="Distance X-Means Avg" width="90" x="715" y="238">
+          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="X-Means Set" width="90" x="246" y="340"/>
+          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="X-Means Model" width="90" x="380" y="136"/>
+          <operator activated="true" class="cluster_distance_performance" compatibility="9.10.001" expanded="true" height="103" name="Distance X-Means Avg" width="90" x="916" y="136">
             <parameter key="main_criterion" value="Avg. within centroid distance"/>
             <parameter key="main_criterion_only" value="false"/>
             <parameter key="normalize" value="false"/>
             <parameter key="maximize" value="false"/>
           </operator>
-          <operator activated="true" class="cluster_distance_performance" compatibility="9.10.001" expanded="true" height="103" name="Distance X-Means DB" width="90" x="715" y="85">
+          <operator activated="true" class="cluster_distance_performance" compatibility="9.10.001" expanded="true" height="103" name="Distance X-Means DB" width="90" x="715" y="34">
             <parameter key="main_criterion" value="Davies Bouldin"/>
             <parameter key="main_criterion_only" value="false"/>
             <parameter key="normalize" value="false"/>
             <parameter key="maximize" value="false"/>
           </operator>
-          <operator activated="true" class="data_to_similarity" compatibility="9.10.001" expanded="true" height="82" name="Data to Similarity (2)" width="90" x="447" y="442">
+          <operator activated="true" class="data_to_similarity" compatibility="9.10.001" expanded="true" height="82" name="Data to Similarity (2)" width="90" x="514" y="391">
             <parameter key="measure_types" value="MixedMeasures"/>
             <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
             <parameter key="nominal_measure" value="NominalDistance"/>
@@ -623,24 +557,47 @@
             <parameter key="kernel_a" value="1.0"/>
             <parameter key="kernel_b" value="0.0"/>
           </operator>
-          <operator activated="true" class="cluster_density_performance" compatibility="9.10.001" expanded="true" height="124" name="Density X-Means" width="90" x="715" y="391"/>
-          <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="68" name="X-Means Density Model" width="90" x="447" y="595"/>
+          <operator activated="true" class="cluster_density_performance" compatibility="9.10.001" expanded="true" height="124" name="Density X-Means" width="90" x="916" y="289"/>
+          <operator activated="true" class="k_medoids" compatibility="9.10.001" expanded="true" height="82" name="Clustering" width="90" x="983" y="34">
+            <parameter key="add_cluster_attribute" value="true"/>
+            <parameter key="add_as_label" value="false"/>
+            <parameter key="remove_unlabeled" value="false"/>
+            <parameter key="k" value="2"/>
+            <parameter key="max_runs" value="10"/>
+            <parameter key="max_optimization_steps" value="100"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="measure_types" value="MixedMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="NominalDistance"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
           <connect from_port="in 1" to_op="X-Means Clustering" to_port="example set"/>
           <connect from_op="X-Means Clustering" from_port="cluster model" to_op="X-Means Model" to_port="input"/>
-          <connect from_op="X-Means Clustering" from_port="clustered set" to_op="X-Means" to_port="input"/>
-          <connect from_op="X-Means" from_port="output 1" to_op="Data to Similarity (2)" to_port="example set"/>
-          <connect from_op="X-Means" from_port="output 2" to_op="Distance X-Means Avg" to_port="example set"/>
-          <connect from_op="X-Means" from_port="output 3" to_op="Distance X-Means DB" to_port="example set"/>
+          <connect from_op="X-Means Clustering" from_port="clustered set" to_op="X-Means Set" to_port="input"/>
+          <connect from_op="X-Means Set" from_port="output 1" to_op="Distance X-Means DB" to_port="example set"/>
+          <connect from_op="X-Means Set" from_port="output 2" to_op="Distance X-Means Avg" to_port="example set"/>
+          <connect from_op="X-Means Set" from_port="output 3" to_op="Data to Similarity (2)" to_port="example set"/>
           <connect from_op="X-Means Model" from_port="output 1" to_op="Distance X-Means DB" to_port="cluster model"/>
           <connect from_op="X-Means Model" from_port="output 2" to_op="Distance X-Means Avg" to_port="cluster model"/>
           <connect from_op="X-Means Model" from_port="output 3" to_op="Density X-Means" to_port="cluster model"/>
-          <connect from_op="Distance X-Means Avg" from_port="performance" to_port="out 2"/>
+          <connect from_op="Distance X-Means Avg" from_port="performance" to_port="out 4"/>
           <connect from_op="Distance X-Means DB" from_port="performance" to_port="out 1"/>
-          <connect from_op="Distance X-Means DB" from_port="example set" to_port="out 4"/>
-          <connect from_op="Distance X-Means DB" from_port="cluster model" to_port="out 5"/>
+          <connect from_op="Distance X-Means DB" from_port="example set" to_port="out 2"/>
+          <connect from_op="Distance X-Means DB" from_port="cluster model" to_port="out 3"/>
           <connect from_op="Data to Similarity (2)" from_port="similarity" to_op="Density X-Means" to_port="distance measure"/>
           <connect from_op="Data to Similarity (2)" from_port="example set" to_op="Density X-Means" to_port="example set"/>
-          <connect from_op="Density X-Means" from_port="performance vector" to_port="out 3"/>
+          <connect from_op="Density X-Means" from_port="performance vector" to_port="out 5"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
@@ -652,35 +609,29 @@
         </process>
       </operator>
       <connect from_op="Retrieve train" from_port="output" to_op="Nominal to Numerical" to_port="example set input"/>
-      <connect from_op="Nominal to Numerical" from_port="example set output" to_op="All Attributes" to_port="example set input"/>
-      <connect from_op="All Attributes" from_port="example set output" to_op="Normalize" to_port="example set input"/>
+      <connect from_op="Nominal to Numerical" from_port="example set output" to_op="Loans" to_port="example set input"/>
+      <connect from_op="Loans" from_port="example set output" to_op="Normalize" to_port="example set input"/>
       <connect from_op="Normalize" from_port="example set output" to_op="Multiply" to_port="input"/>
       <connect from_op="Multiply" from_port="output 1" to_op="X-Means Performance" to_port="in 1"/>
       <connect from_op="Multiply" from_port="output 2" to_op="K-Medoids Performance" to_port="in 1"/>
       <connect from_op="Multiply" from_port="output 3" to_op="K-Means Performance" to_port="in 1"/>
-      <connect from_op="K-Means Performance" from_port="out 1" to_port="result 7"/>
-      <connect from_op="K-Means Performance" from_port="out 2" to_port="result 19"/>
-      <connect from_op="K-Means Performance" from_port="out 3" to_port="result 13"/>
-      <connect from_op="K-Means Performance" from_port="out 4" to_port="result 8"/>
-      <connect from_op="K-Means Performance" from_port="out 5" to_port="result 20"/>
-      <connect from_op="K-Means Performance" from_port="out 6" to_port="result 14"/>
-      <connect from_op="K-Means Performance" from_port="out 7" to_port="result 9"/>
-      <connect from_op="K-Means Performance" from_port="out 8" to_port="result 21"/>
-      <connect from_op="K-Means Performance" from_port="out 9" to_port="result 15"/>
-      <connect from_op="K-Medoids Performance" from_port="out 1" to_port="result 23"/>
-      <connect from_op="K-Medoids Performance" from_port="out 2" to_port="result 17"/>
-      <connect from_op="K-Medoids Performance" from_port="out 3" to_port="result 4"/>
-      <connect from_op="K-Medoids Performance" from_port="out 4" to_port="result 5"/>
-      <connect from_op="K-Medoids Performance" from_port="out 5" to_port="result 6"/>
+      <connect from_op="K-Means Performance" from_port="out 1" to_port="result 12"/>
+      <connect from_op="K-Means Performance" from_port="out 2" to_port="result 13"/>
+      <connect from_op="K-Means Performance" from_port="out 3" to_port="result 14"/>
+      <connect from_op="K-Means Performance" from_port="out 4" to_port="result 15"/>
+      <connect from_op="K-Means Performance" from_port="out 5" to_port="result 16"/>
+      <connect from_op="K-Means Performance" from_port="out 6" to_port="result 17"/>
+      <connect from_op="K-Medoids Performance" from_port="out 1" to_port="result 6"/>
+      <connect from_op="K-Medoids Performance" from_port="out 2" to_port="result 7"/>
+      <connect from_op="K-Medoids Performance" from_port="out 3" to_port="result 8"/>
+      <connect from_op="K-Medoids Performance" from_port="out 4" to_port="result 9"/>
+      <connect from_op="K-Medoids Performance" from_port="out 5" to_port="result 10"/>
       <connect from_op="K-Medoids Performance" from_port="out 6" to_port="result 11"/>
-      <connect from_op="K-Medoids Performance" from_port="out 7" to_port="result 12"/>
-      <connect from_op="K-Medoids Performance" from_port="out 8" to_port="result 18"/>
-      <connect from_op="K-Medoids Performance" from_port="out 9" to_port="result 16"/>
       <connect from_op="X-Means Performance" from_port="out 1" to_port="result 1"/>
       <connect from_op="X-Means Performance" from_port="out 2" to_port="result 2"/>
       <connect from_op="X-Means Performance" from_port="out 3" to_port="result 3"/>
-      <connect from_op="X-Means Performance" from_port="out 4" to_port="result 22"/>
-      <connect from_op="X-Means Performance" from_port="out 5" to_port="result 10"/>
+      <connect from_op="X-Means Performance" from_port="out 4" to_port="result 4"/>
+      <connect from_op="X-Means Performance" from_port="out 5" to_port="result 5"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
@@ -700,12 +651,6 @@
       <portSpacing port="sink_result 16" spacing="0"/>
       <portSpacing port="sink_result 17" spacing="0"/>
       <portSpacing port="sink_result 18" spacing="0"/>
-      <portSpacing port="sink_result 19" spacing="0"/>
-      <portSpacing port="sink_result 20" spacing="0"/>
-      <portSpacing port="sink_result 21" spacing="0"/>
-      <portSpacing port="sink_result 22" spacing="0"/>
-      <portSpacing port="sink_result 23" spacing="0"/>
-      <portSpacing port="sink_result 24" spacing="0"/>
     </process>
   </operator>
 </process>
