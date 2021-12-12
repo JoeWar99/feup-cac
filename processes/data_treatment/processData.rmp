@@ -521,29 +521,6 @@
                 </list>
                 <parameter key="keep_both_join_attributes" value="false"/>
               </operator>
-              <operator activated="true" class="remove_duplicates" compatibility="9.10.001" expanded="true" height="103" name="Remove Duplicates" width="90" x="4333" y="289">
-                <parameter key="attribute_filter_type" value="all"/>
-                <parameter key="attribute" value=""/>
-                <parameter key="attributes" value=""/>
-                <parameter key="use_except_expression" value="false"/>
-                <parameter key="value_type" value="attribute_value"/>
-                <parameter key="use_value_type_exception" value="false"/>
-                <parameter key="except_value_type" value="time"/>
-                <parameter key="block_type" value="attribute_block"/>
-                <parameter key="use_block_type_exception" value="false"/>
-                <parameter key="except_block_type" value="value_matrix_row_start"/>
-                <parameter key="invert_selection" value="false"/>
-                <parameter key="include_special_attributes" value="false"/>
-                <parameter key="treat_missing_values_as_duplicates" value="false"/>
-              </operator>
-              <operator activated="true" class="blending:rename" compatibility="9.10.001" expanded="true" height="82" name="Rename (23)" width="90" x="4467" y="85">
-                <list key="rename attributes">
-                  <parameter key="average(credit)" value="credit_month"/>
-                  <parameter key="average(withdrawals)" value="withdrawal_month"/>
-                </list>
-                <parameter key="from_attribute" value=""/>
-                <parameter key="to_attribute" value=""/>
-              </operator>
               <operator activated="true" class="aggregate" compatibility="9.10.001" expanded="true" height="82" name="Type (3)" width="90" x="179" y="442">
                 <parameter key="use_default_aggregation" value="false"/>
                 <parameter key="attribute_filter_type" value="all"/>
@@ -643,9 +620,41 @@
               </operator>
               <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Attributes (5)" width="90" x="1318" y="544">
                 <list key="function_descriptions">
-                  <parameter key="Balance" value="credit_total - withdraw_total"/>
+                  <parameter key="final Balance" value="credit_total - withdraw_total"/>
                 </list>
                 <parameter key="keep_all" value="true"/>
+              </operator>
+              <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join avg/household/date (3)" width="90" x="4065" y="595">
+                <parameter key="remove_double_attributes" value="true"/>
+                <parameter key="join_type" value="outer"/>
+                <parameter key="use_id_attribute_as_key" value="false"/>
+                <list key="key_attributes">
+                  <parameter key="account_id" value="account_id"/>
+                </list>
+                <parameter key="keep_both_join_attributes" value="false"/>
+              </operator>
+              <operator activated="true" class="remove_duplicates" compatibility="9.10.001" expanded="true" height="103" name="Remove Duplicates" width="90" x="4333" y="289">
+                <parameter key="attribute_filter_type" value="all"/>
+                <parameter key="attribute" value=""/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="attribute_value"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="time"/>
+                <parameter key="block_type" value="attribute_block"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="value_matrix_row_start"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="treat_missing_values_as_duplicates" value="false"/>
+              </operator>
+              <operator activated="true" class="blending:rename" compatibility="9.10.001" expanded="true" height="82" name="Rename (23)" width="90" x="4467" y="85">
+                <list key="rename attributes">
+                  <parameter key="average(credit)" value="credit_month"/>
+                  <parameter key="average(withdrawals)" value="withdrawal_month"/>
+                </list>
+                <parameter key="from_attribute" value=""/>
+                <parameter key="to_attribute" value=""/>
               </operator>
               <connect from_port="in 1" to_op="Multiply (15)" to_port="input"/>
               <connect from_op="Multiply (15)" from_port="output 1" to_op="Min Date (5)" to_port="example set input"/>
@@ -697,9 +706,7 @@
               <connect from_op="Aggregate average" from_port="original" to_op="Select household" to_port="example set input"/>
               <connect from_op="Select household" from_port="example set output" to_op="Join avg/household" to_port="right"/>
               <connect from_op="Join avg/household" from_port="join" to_op="Join avg/household/date" to_port="left"/>
-              <connect from_op="Join avg/household/date" from_port="join" to_op="Remove Duplicates" to_port="example set input"/>
-              <connect from_op="Remove Duplicates" from_port="example set output" to_op="Rename (23)" to_port="example set input"/>
-              <connect from_op="Rename (23)" from_port="example set output" to_port="out 1"/>
+              <connect from_op="Join avg/household/date" from_port="join" to_op="Join avg/household/date (3)" to_port="right"/>
               <connect from_op="Type (3)" from_port="example set output" to_op="Filter Withdrawals (3)" to_port="example set input"/>
               <connect from_op="Filter Withdrawals (3)" from_port="example set output" to_op="Withdrawals (3)" to_port="example set input"/>
               <connect from_op="Filter Withdrawals (3)" from_port="unmatched example set" to_op="Rename (31)" to_port="example set input"/>
@@ -708,6 +715,10 @@
               <connect from_op="Rename (32)" from_port="example set output" to_op="Join (15)" to_port="left"/>
               <connect from_op="Join (15)" from_port="join" to_op="Replace Missing Values (12)" to_port="example set input"/>
               <connect from_op="Replace Missing Values (12)" from_port="example set output" to_op="Generate Attributes (5)" to_port="example set input"/>
+              <connect from_op="Generate Attributes (5)" from_port="example set output" to_op="Join avg/household/date (3)" to_port="left"/>
+              <connect from_op="Join avg/household/date (3)" from_port="join" to_op="Remove Duplicates" to_port="example set input"/>
+              <connect from_op="Remove Duplicates" from_port="example set output" to_op="Rename (23)" to_port="example set input"/>
+              <connect from_op="Rename (23)" from_port="example set output" to_port="out 1"/>
               <portSpacing port="source_in 1" spacing="0"/>
               <portSpacing port="source_in 2" spacing="0"/>
               <portSpacing port="sink_out 1" spacing="0"/>
